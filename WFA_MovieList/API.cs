@@ -95,10 +95,8 @@ namespace WFA_MovieList
                     for (int i = 0; i < jsonData.results.Count; i++)
                     {
                         DateTime jsonDate = Convert.ToDateTime(jsonData.results[i].release_date);
-                        if (date.Year != 1)
+                        if (date.Year != 1 && date != null)
                         {
-                            if (date != null)
-                            {
                                 if (jsonDate >= date && jsonData.results[i].title == Searcheditem)
                                 {
                                     apiResult.id = jsonData.results[i].id;
@@ -107,7 +105,6 @@ namespace WFA_MovieList
                                     apiResult.poster_path = jsonData.results[i].poster_path;
                                     break;
                                 }
-                            }
                         }
 
                         /*if (jsonData.results[i].title == Searcheditem)
