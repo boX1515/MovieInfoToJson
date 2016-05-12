@@ -144,16 +144,39 @@ namespace WFA_MovieList
                     item.ID = i;
                     item = await RetrievingMovieData(item,i);
                     objectToSerialize.data.Add(item);
+                    
                 }
                 
             }
             if (isItemInImportedJson) 
             {
+                //Sorting objects inside list to display items with descending date
+                GlobalVar.GlobalJsonObject.data.Sort(delegate (Data x, Data y)
+                {
+                    DateTime item1 = Convert.ToDateTime(x.Info.release_date);
+                    DateTime item2 = Convert.ToDateTime(y.Info.release_date);
+                    if (item1 == item2) return 0;
+                    else if (item1 > item2) return -1;
+                    else if (item2 > item1) return 1;
+                    else return item1.CompareTo(item2);
+                });
+                //Serializing
                 var json = JsonConvert.SerializeObject(GlobalVar.GlobalJsonObject, Formatting.Indented);
                 textBox1.Text = json;
             }
             else
             {
+                //Sorting objects inside list to display items with descending date
+                objectToSerialize.data.Sort(delegate (Data x, Data y)
+                {
+                    DateTime item1 = Convert.ToDateTime(x.Info.release_date);
+                    DateTime item2 = Convert.ToDateTime(y.Info.release_date);
+                    if (item1 == item2) return 0;
+                    else if (item1 > item2) return -1;
+                    else if (item2 > item1) return 1;
+                    else return item1.CompareTo(item2);
+                });
+                //Serializing
                 var json = JsonConvert.SerializeObject(objectToSerialize, Formatting.Indented);
                 textBox1.Text = json;
             }

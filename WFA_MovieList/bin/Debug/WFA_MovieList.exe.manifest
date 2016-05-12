@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WFA_MovieList.exe" size="39336">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WFA_MovieList.exe" size="40360">
       <assemblyIdentity name="WFA_MovieList" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>zbsChmVq0OJTBD9RBlV7V9fV2yFpmUHSa6Z2e4Fd+Ac=</dsig:DigestValue>
+        <dsig:DigestValue>EWtIgak0F+q4k1UQhLgFQAlOxHUy40aV/I8AqcoTrz0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

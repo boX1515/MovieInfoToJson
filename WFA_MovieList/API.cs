@@ -97,7 +97,7 @@ namespace WFA_MovieList
                         DateTime jsonDate = Convert.ToDateTime(jsonData.results[i].release_date);
                         if (date.Year != 1 && date != null)
                         {
-                                if (jsonDate >= date && jsonData.results[i].title == Searcheditem)
+                                if (jsonDate >= date || jsonData.results[i].title == Searcheditem)
                                 {
                                     apiResult.id = jsonData.results[i].id;
                                     apiResult.title = jsonData.results[i].title;
@@ -106,15 +106,6 @@ namespace WFA_MovieList
                                     break;
                                 }
                         }
-
-                        /*if (jsonData.results[i].title == Searcheditem)
-                        {
-                            apiResult.id = jsonData.results[i].id;
-                            apiResult.title = jsonData.results[i].title;
-                            apiResult.genre_ids = jsonData.results[i].genre_ids;
-                            apiResult.poster_path = jsonData.results[i].poster_path;
-                            break;
-                        }*/
                     }
                     GlobalVar.GlobalApiCall.Counter++;
                     var GetMovieInfoUrl = "http://api.themoviedb.org/3/movie/"+ apiResult.id +"?api_key=" + Properties.Settings.Default.APIKey;
