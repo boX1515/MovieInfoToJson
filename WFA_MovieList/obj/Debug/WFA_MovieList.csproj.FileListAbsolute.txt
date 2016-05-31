@@ -13,3 +13,4 @@ F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\bin\Debug\WFA_MovieList.ex
 F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\bin\Debug\WFA_MovieList.application
 F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\obj\Debug\WFA_MovieList.exe.manifest
 F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\obj\Debug\WFA_MovieList.application
+F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\obj\Debug\WFA_MovieList.Edit.resources

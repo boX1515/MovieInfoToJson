@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using WFA_MovieList.Resources;
 
 
 namespace WFA_MovieList
@@ -63,54 +64,84 @@ namespace WFA_MovieList
             }
             listBox2.DataSource = LocationList;
             listBox2.Refresh();
+            
         }
-
-        private void updateFoldersToolStripMenuItem_Click(object sender, EventArgs e)
+        private void updateMainFolders()
         {
             var list = new List<string>();
             var movieList = new List<string>();
             foreach (string key in LocationDictionary.Keys)
             {
                 var dir = LocationDictionary[key];
-                
+
                 list = Directory.GetDirectories(dir).ToList();
-                foreach(var item in list)
+                foreach (var item in list)
                 {
-                    foreach(var dirFiles in Directory.GetFiles(item))
+                    foreach (var dirFiles in Directory.GetFiles(item))
                     {
                         if (dirFiles.EndsWith(".mp4"))
                         {
                             movieList.Add(item);
                         }
                     }
-                    
+
                 }
-                if(Files.ContainsKey(dir))
+                if (Files.ContainsKey(dir))
                 {
                     Files.Remove(dir);
                 }
                 Files.Add(dir, movieList);
-                
+
             }
-            
+
             foreach (var key in Files.Keys)
             {
                 var data_dir = Files[key].ToArray();
-                for(int i = 0; i < data_dir.Length;i++)
+                for (int i = 0; i < data_dir.Length; i++)
                 {
                     if (!Data.Contains(data_dir[i]))
                     {
                         Data.Add(data_dir[i]);
                     }
-                    
+
                 }
             }
+            if(listBox1.DataSource != null)
+            {
+                listBox1.DisplayMember = "main_folder";
+            }
             listBox1.DataSource = Data;
+            listBox1.Update();
+            
             progressBar1.Maximum = Data.Count;
             label5.Text = Data.Count.ToString();
-            //MessageBox.Show("Files found: " + Data.Count.ToString() , "Message");
+        }
+
+        private void updateFoldersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            updateMainFolders();
         }
         //private int countCall = 0;
+
+        //Event za gumb v flow layout panelu 
+        private void button_movie_Click(object sender, EventArgs e)
+        {
+            var item = ((Button)sender).Tag;
+            Data newItem = new WFA_MovieList.Data();
+            newItem = GlobalVar.GlobalJsonObject.data.Where(x => x.DBid.ToString() == item.ToString()).First();
+            Edit formLoad = new Edit();
+            formLoad.item = newItem;
+            if(formLoad.ShowDialog() == DialogResult.OK)
+            {
+                if (formLoad.item != newItem)
+                {
+                    newItem = formLoad.item;
+
+                }
+            }
+
+        }
+
         private async void button1_Click(object sender, EventArgs e)
         {
             progressBar1.Value = 0;
@@ -146,7 +177,13 @@ namespace WFA_MovieList
                     objectToSerialize.data.Add(item);
                     
                 }
-                
+
+                //creating buttons in flow layout panel for easy view
+                ImageDownload imageProcessing = new ImageDownload();
+                var responseBttn = await imageProcessing.CreatingMovieButtons(item);
+                responseBttn.Click += new EventHandler(button_movie_Click);
+                flowLayoutPanel1.Controls.Add(responseBttn);
+
             }
             if (isItemInImportedJson) 
             {
@@ -176,7 +213,8 @@ namespace WFA_MovieList
                     else if (item2 > item1) return 1;
                     else return item1.CompareTo(item2);
                 });
-                //Serializing
+                //Serializing && setting global variable for JSON object as list
+                GlobalVar.GlobalJsonObject = objectToSerialize;
                 var json = JsonConvert.SerializeObject(objectToSerialize, Formatting.Indented);
                 textBox1.Text = json;
             }
@@ -310,6 +348,53 @@ namespace WFA_MovieList
         private void button2_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            
+            if(MessageBox.Show("Are you sure you want to remove this folder?", "Deletion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                try
+                {
+                    var list = listBox2.Items;
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        if (listBox2.SelectedItem == list[i])
+                        {
+                            list.RemoveAt(i);
+                        }
+                    }
+                    listBox2.Dispose();
+                    for(int i = 0; i < list.Count;i++)
+                    {
+                        listBox2.Items.Insert(i, list[i]);
+                    }
+                    
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Erro" + ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+            }
+        }
+
+        private void refresh_button_Click(object sender, EventArgs e)
+        {
+            updateMainFolders();
+        }
+
+        private void refresh_button_MouseHover(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            ToolTip1.SetToolTip(refresh_button, "Refresh the main folder to get sub-folders.");
+        }
+
+        private void button3_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip ToolTip1 = new ToolTip();
+            ToolTip1.SetToolTip(button3, "Remove selected main folder from list.");
         }
     }
 }

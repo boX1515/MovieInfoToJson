@@ -33,6 +33,19 @@ namespace WFA_MovieList
                 _globalJsonObject = value;
             }
         }
+       /*static List<JSON> _globalJsonList;
+        public static List<JSON> GlobalJsonList
+        {
+            get
+            {
+                return _globalJsonList;
+            }
+            set
+            {
+                _globalJsonList = value;
+            }
+        }*/
+
     }
     public class Count
     {
