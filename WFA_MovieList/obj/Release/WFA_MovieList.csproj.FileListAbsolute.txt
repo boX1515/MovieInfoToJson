@@ -13,3 +13,4 @@ F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\obj\Release\WFA_MovieList.
 F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\obj\Release\WFA_MovieList.exe
 F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\obj\Release\WFA_MovieList.pdb
 F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\obj\Release\WFA_MovieList.csprojResolveAssemblyReference.cache
+F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\obj\Release\WFA_MovieList.Edit.resources

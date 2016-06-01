@@ -136,7 +136,7 @@ namespace WFA_MovieList
                 if (formLoad.item != newItem)
                 {
                     newItem = formLoad.item;
-
+                    //GlobalVar.GlobalJsonObject.data.Remove()
                 }
             }
 
@@ -164,6 +164,7 @@ namespace WFA_MovieList
                     var isInGlobal = GlobalVar.GlobalJsonObject.data.Where<Data>(x => x.Name == item.Name).FirstOrDefault();
                     if(isInGlobal == null)
                     {
+                        
                         item.ID = GlobalVar.GlobalJsonObject.data.Count + 1;
                         item = await RetrievingMovieData(item,i);
                         objectToSerialize.data.Add(item);
@@ -357,6 +358,7 @@ namespace WFA_MovieList
             {
                 try
                 {
+                    //Error at listbox deleting a selected item
                     var list = listBox2.Items;
                     for (int i = 0; i < list.Count; i++)
                     {
