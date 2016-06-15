@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MovieDatabaseModelStoreContainer" CdmEntityContainer="MovieDatabaseEntities">
+    <EntitySetMapping Name="Data">
+      <EntityTypeMapping TypeName="MovieDatabaseModel.Data">
+        <MappingFragment StoreEntitySet="Data">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="ServerLocation_" ColumnName="ServerLocation " />
+          <ScalarProperty Name="DBgenres" ColumnName="DBgenres" />
+          <ScalarProperty Name="DBid" ColumnName="DBid" />
+          <ScalarProperty Name="DBTitle" ColumnName="DBTitle" />
+          <ScalarProperty Name="DBposter" ColumnName="DBposter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Info">
+      <EntityTypeMapping TypeName="MovieDatabaseModel.Info">
+        <MappingFragment StoreEntitySet="Info">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="adult" ColumnName="adult" />
+          <ScalarProperty Name="backdrop_path" ColumnName="backdrop_path" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="homepage" ColumnName="homepage" />
+          <ScalarProperty Name="imdb_id" ColumnName="imdb_id" />
+          <ScalarProperty Name="original_title" ColumnName="original_title" />
+          <ScalarProperty Name="overview" ColumnName="overview" />
+          <ScalarProperty Name="popularity" ColumnName="popularity" />
+          <ScalarProperty Name="poster_path" ColumnName="poster_path" />
+          <ScalarProperty Name="release_date" ColumnName="release_date" />
+          <ScalarProperty Name="revenue" ColumnName="revenue" />
+          <ScalarProperty Name="runtime" ColumnName="runtime" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="tagline" ColumnName="tagline" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="vote_average" ColumnName="vote_average" />
+          <ScalarProperty Name="vote_count" ColumnName="vote_count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

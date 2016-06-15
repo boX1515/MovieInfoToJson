@@ -1,0 +1,14 @@
+F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\bin\Release project\WFA_MovieList.exe.config
+F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\bin\Release project\WFA_MovieList.exe.manifest
+F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\bin\Release project\WFA_MovieList.application
+F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\bin\Release project\WFA_MovieList.exe
+F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\bin\Release project\Newtonsoft.Json.dll
+F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\bin\Release project\Newtonsoft.Json.xml
+F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\obj\Release project\WFA_MovieList.Form1.resources
+F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\obj\Release project\WFA_MovieList.Edit.resources
+F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\obj\Release project\WFA_MovieList.Properties.Resources.resources
+F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\obj\Release project\WFA_MovieList.csproj.GenerateResource.Cache
+F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\obj\Release project\WFA_MovieList.exe.manifest
+F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\obj\Release project\WFA_MovieList.application
+F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\obj\Release project\WFA_MovieList.exe
+F:\Projekti_VS\MovieDBMVC\WFA_MovieList\WFA_MovieList\obj\Release project\WFA_MovieList.csprojResolveAssemblyReference.cache

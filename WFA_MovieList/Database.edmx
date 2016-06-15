@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MovieDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Data">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="None" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="200" />
+          <Property Name="ServerLocation " Type="nvarchar" MaxLength="200" />
+          <Property Name="DBgenres" Type="nvarchar" MaxLength="50" />
+          <Property Name="DBid" Type="nvarchar" MaxLength="50" />
+          <Property Name="DBTitle" Type="nchar" MaxLength="100" />
+          <Property Name="DBposter" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Info">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="adult" Type="bit" />
+          <Property Name="backdrop_path" Type="nvarchar" MaxLength="100" />
+          <Property Name="budget" Type="nvarchar" MaxLength="100" />
+          <Property Name="homepage" Type="nvarchar" MaxLength="100" />
+          <Property Name="imdb_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="original_title" Type="nvarchar" MaxLength="50" />
+          <Property Name="overview" Type="nvarchar(max)" />
+          <Property Name="popularity" Type="nvarchar" MaxLength="50" />
+          <Property Name="poster_path" Type="nvarchar" MaxLength="100" />
+          <Property Name="release_date" Type="nvarchar" MaxLength="50" />
+          <Property Name="revenue" Type="nvarchar" MaxLength="50" />
+          <Property Name="runtime" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+          <Property Name="tagline" Type="nvarchar" MaxLength="100" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+          <Property Name="vote_average" Type="nvarchar" MaxLength="50" />
+          <Property Name="vote_count" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Info_ToData">
+          <End Role="Data" Type="Self.Data" Multiplicity="1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Data">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MovieDatabaseModelStoreContainer">
+          <EntitySet Name="Data" EntityType="Self.Data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Info" EntityType="Self.Info" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Info_ToData" Association="Self.FK_Info_ToData">
+            <End Role="Data" EntitySet="Data" />
+            <End Role="Info" EntitySet="Info" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MovieDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Data">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ServerLocation_" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DBgenres" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DBid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DBTitle" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="DBposter" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Info" Relationship="Self.FK_Info_ToData" FromRole="Data" ToRole="Info" />
+        </EntityType>
+        <EntityType Name="Info">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="adult" Type="Boolean" />
+          <Property Name="backdrop_path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="budget" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="homepage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="imdb_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="original_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="overview" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="popularity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="poster_path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="release_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="revenue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="runtime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tagline" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="vote_average" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="vote_count" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Data" Relationship="Self.FK_Info_ToData" FromRole="Info" ToRole="Data" />
+        </EntityType>
+        <Association Name="FK_Info_ToData">
+          <End Role="Data" Type="Self.Data" Multiplicity="1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Data">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MovieDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Data" EntityType="Self.Data" />
+          <EntitySet Name="Info" EntityType="Self.Info" />
+          <AssociationSet Name="FK_Info_ToData" Association="Self.FK_Info_ToData">
+            <End Role="Data" EntitySet="Data" />
+            <End Role="Info" EntitySet="Info" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MovieDatabaseModelStoreContainer" CdmEntityContainer="MovieDatabaseEntities">
+          <EntitySetMapping Name="Data">
+            <EntityTypeMapping TypeName="MovieDatabaseModel.Data">
+              <MappingFragment StoreEntitySet="Data">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ServerLocation_" ColumnName="ServerLocation " />
+                <ScalarProperty Name="DBgenres" ColumnName="DBgenres" />
+                <ScalarProperty Name="DBid" ColumnName="DBid" />
+                <ScalarProperty Name="DBTitle" ColumnName="DBTitle" />
+                <ScalarProperty Name="DBposter" ColumnName="DBposter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Info">
+            <EntityTypeMapping TypeName="MovieDatabaseModel.Info">
+              <MappingFragment StoreEntitySet="Info">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="adult" ColumnName="adult" />
+                <ScalarProperty Name="backdrop_path" ColumnName="backdrop_path" />
+                <ScalarProperty Name="budget" ColumnName="budget" />
+                <ScalarProperty Name="homepage" ColumnName="homepage" />
+                <ScalarProperty Name="imdb_id" ColumnName="imdb_id" />
+                <ScalarProperty Name="original_title" ColumnName="original_title" />
+                <ScalarProperty Name="overview" ColumnName="overview" />
+                <ScalarProperty Name="popularity" ColumnName="popularity" />
+                <ScalarProperty Name="poster_path" ColumnName="poster_path" />
+                <ScalarProperty Name="release_date" ColumnName="release_date" />
+                <ScalarProperty Name="revenue" ColumnName="revenue" />
+                <ScalarProperty Name="runtime" ColumnName="runtime" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="tagline" ColumnName="tagline" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="vote_average" ColumnName="vote_average" />
+                <ScalarProperty Name="vote_count" ColumnName="vote_count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

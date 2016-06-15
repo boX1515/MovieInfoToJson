@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MovieDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Data">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FileName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ServerLocation_" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DBgenres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DBid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DBTitle" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="DBposter" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Info" Relationship="Self.FK_Info_ToData" FromRole="Data" ToRole="Info" />
+  </EntityType>
+  <EntityType Name="Info">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="adult" Type="Boolean" />
+    <Property Name="backdrop_path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="budget" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="homepage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="imdb_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="original_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="overview" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="popularity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="poster_path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="release_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="revenue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="runtime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tagline" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="vote_average" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="vote_count" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Data" Relationship="Self.FK_Info_ToData" FromRole="Info" ToRole="Data" />
+  </EntityType>
+  <Association Name="FK_Info_ToData">
+    <End Role="Data" Type="Self.Data" Multiplicity="1" />
+    <End Role="Info" Type="Self.Info" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Data">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Info">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MovieDatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Data" EntityType="Self.Data" />
+    <EntitySet Name="Info" EntityType="Self.Info" />
+    <AssociationSet Name="FK_Info_ToData" Association="Self.FK_Info_ToData">
+      <End Role="Data" EntitySet="Data" />
+      <End Role="Info" EntitySet="Info" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
