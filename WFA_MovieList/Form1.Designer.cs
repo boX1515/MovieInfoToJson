@@ -263,7 +263,7 @@
             // toJSONToolStripMenuItem
             // 
             this.toJSONToolStripMenuItem.Name = "toJSONToolStripMenuItem";
-            this.toJSONToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.toJSONToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.toJSONToolStripMenuItem.Text = "to JSON";
             this.toJSONToolStripMenuItem.Click += new System.EventHandler(this.jSONExportToolStripMenuItem_Click);
             // 

@@ -51,38 +51,38 @@
             this.id_textbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Info = new System.Windows.Forms.TabPage();
-            this.label11 = new System.Windows.Forms.Label();
-            this.backdrop_path_textbox = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.budget_textbox = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.homepage_textbox = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.imdb_id_textbox = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.original_title_textbox = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.overview_textbox = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.popularity_textbox = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.posterpath_textbox = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.release_date_textbox = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.revenue_textbox = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.status_textbox = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.tagline_textbox = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.title_textbox = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.vote_average_textbox = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
+            this.adult_comboBox1 = new System.Windows.Forms.ComboBox();
             this.vote_count_textbox = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
-            this.adult_comboBox1 = new System.Windows.Forms.ComboBox();
+            this.vote_average_textbox = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.title_textbox = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.tagline_textbox = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.status_textbox = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.revenue_textbox = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.release_date_textbox = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.posterpath_textbox = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.popularity_textbox = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.overview_textbox = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.original_title_textbox = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.imdb_id_textbox = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.homepage_textbox = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.budget_textbox = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.backdrop_path_textbox = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Data.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -163,11 +163,14 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(151, 32);
+            this.label9.Location = new System.Drawing.Point(90, 32);
+            this.label9.MaximumSize = new System.Drawing.Size(200, 50);
+            this.label9.MinimumSize = new System.Drawing.Size(200, 50);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.Size = new System.Drawing.Size(200, 50);
             this.label9.TabIndex = 17;
             this.label9.Text = "label9";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pictureBox1
             // 
@@ -344,94 +347,160 @@
             this.Info.Text = "Info";
             this.Info.UseVisualStyleBackColor = true;
             // 
-            // label11
+            // adult_comboBox1
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(10, 21);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(30, 13);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "adult";
+            this.adult_comboBox1.FormattingEnabled = true;
+            this.adult_comboBox1.Items.AddRange(new object[] {
+            "true",
+            "false"});
+            this.adult_comboBox1.Location = new System.Drawing.Point(98, 17);
+            this.adult_comboBox1.Name = "adult_comboBox1";
+            this.adult_comboBox1.Size = new System.Drawing.Size(100, 21);
+            this.adult_comboBox1.TabIndex = 32;
             // 
-            // backdrop_path_textbox
+            // vote_count_textbox
             // 
-            this.backdrop_path_textbox.Location = new System.Drawing.Point(98, 44);
-            this.backdrop_path_textbox.Name = "backdrop_path_textbox";
-            this.backdrop_path_textbox.Size = new System.Drawing.Size(307, 20);
-            this.backdrop_path_textbox.TabIndex = 3;
+            this.vote_count_textbox.Location = new System.Drawing.Point(500, 41);
+            this.vote_count_textbox.Name = "vote_count_textbox";
+            this.vote_count_textbox.Size = new System.Drawing.Size(100, 20);
+            this.vote_count_textbox.TabIndex = 31;
             // 
-            // label12
+            // label26
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(10, 47);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(79, 13);
-            this.label12.TabIndex = 2;
-            this.label12.Text = "backdrop_path";
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(424, 44);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(61, 13);
+            this.label26.TabIndex = 30;
+            this.label26.Text = "vote_count";
             // 
-            // budget_textbox
+            // vote_average_textbox
             // 
-            this.budget_textbox.Location = new System.Drawing.Point(499, 69);
-            this.budget_textbox.Name = "budget_textbox";
-            this.budget_textbox.Size = new System.Drawing.Size(100, 20);
-            this.budget_textbox.TabIndex = 5;
+            this.vote_average_textbox.Location = new System.Drawing.Point(500, 15);
+            this.vote_average_textbox.Name = "vote_average_textbox";
+            this.vote_average_textbox.Size = new System.Drawing.Size(100, 20);
+            this.vote_average_textbox.TabIndex = 29;
             // 
-            // label13
+            // label25
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(424, 73);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(40, 13);
-            this.label13.TabIndex = 4;
-            this.label13.Text = "budget";
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(424, 18);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(73, 13);
+            this.label25.TabIndex = 28;
+            this.label25.Text = "vote_average";
             // 
-            // homepage_textbox
+            // title_textbox
             // 
-            this.homepage_textbox.Location = new System.Drawing.Point(98, 73);
-            this.homepage_textbox.Name = "homepage_textbox";
-            this.homepage_textbox.Size = new System.Drawing.Size(307, 20);
-            this.homepage_textbox.TabIndex = 7;
+            this.title_textbox.Location = new System.Drawing.Point(305, 174);
+            this.title_textbox.Name = "title_textbox";
+            this.title_textbox.Size = new System.Drawing.Size(100, 20);
+            this.title_textbox.TabIndex = 27;
             // 
-            // label14
+            // label24
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(10, 76);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(57, 13);
-            this.label14.TabIndex = 6;
-            this.label14.Text = "homepage";
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(229, 177);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(23, 13);
+            this.label24.TabIndex = 26;
+            this.label24.Text = "title";
             // 
-            // imdb_id_textbox
+            // tagline_textbox
             // 
-            this.imdb_id_textbox.Location = new System.Drawing.Point(98, 122);
-            this.imdb_id_textbox.Name = "imdb_id_textbox";
-            this.imdb_id_textbox.Size = new System.Drawing.Size(100, 20);
-            this.imdb_id_textbox.TabIndex = 9;
+            this.tagline_textbox.Location = new System.Drawing.Point(305, 148);
+            this.tagline_textbox.Name = "tagline_textbox";
+            this.tagline_textbox.Size = new System.Drawing.Size(100, 20);
+            this.tagline_textbox.TabIndex = 25;
             // 
-            // label15
+            // label23
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(10, 125);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(43, 13);
-            this.label15.TabIndex = 8;
-            this.label15.Text = "imdb_id";
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(229, 151);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(38, 13);
+            this.label23.TabIndex = 24;
+            this.label23.Text = "tagline";
             // 
-            // original_title_textbox
+            // status_textbox
             // 
-            this.original_title_textbox.Location = new System.Drawing.Point(98, 148);
-            this.original_title_textbox.Name = "original_title_textbox";
-            this.original_title_textbox.Size = new System.Drawing.Size(100, 20);
-            this.original_title_textbox.TabIndex = 11;
+            this.status_textbox.Location = new System.Drawing.Point(305, 125);
+            this.status_textbox.Name = "status_textbox";
+            this.status_textbox.Size = new System.Drawing.Size(100, 20);
+            this.status_textbox.TabIndex = 23;
             // 
-            // label16
+            // label22
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(10, 151);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(62, 13);
-            this.label16.TabIndex = 10;
-            this.label16.Text = "original_title";
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(229, 128);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(35, 13);
+            this.label22.TabIndex = 22;
+            this.label22.Text = "status";
+            // 
+            // revenue_textbox
+            // 
+            this.revenue_textbox.Location = new System.Drawing.Point(305, 99);
+            this.revenue_textbox.Name = "revenue_textbox";
+            this.revenue_textbox.Size = new System.Drawing.Size(100, 20);
+            this.revenue_textbox.TabIndex = 21;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(229, 102);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(46, 13);
+            this.label21.TabIndex = 20;
+            this.label21.Text = "revenue";
+            // 
+            // release_date_textbox
+            // 
+            this.release_date_textbox.Location = new System.Drawing.Point(98, 98);
+            this.release_date_textbox.Name = "release_date_textbox";
+            this.release_date_textbox.Size = new System.Drawing.Size(100, 20);
+            this.release_date_textbox.TabIndex = 19;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(10, 101);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(68, 13);
+            this.label20.TabIndex = 18;
+            this.label20.Text = "release_date";
+            // 
+            // posterpath_textbox
+            // 
+            this.posterpath_textbox.Location = new System.Drawing.Point(98, 174);
+            this.posterpath_textbox.Name = "posterpath_textbox";
+            this.posterpath_textbox.Size = new System.Drawing.Size(100, 20);
+            this.posterpath_textbox.TabIndex = 17;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(10, 177);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(63, 13);
+            this.label19.TabIndex = 16;
+            this.label19.Text = "poster_path";
+            // 
+            // popularity_textbox
+            // 
+            this.popularity_textbox.Location = new System.Drawing.Point(305, 18);
+            this.popularity_textbox.Name = "popularity_textbox";
+            this.popularity_textbox.Size = new System.Drawing.Size(100, 20);
+            this.popularity_textbox.TabIndex = 15;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(229, 21);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(52, 13);
+            this.label18.TabIndex = 14;
+            this.label18.Text = "popularity";
             // 
             // overview_textbox
             // 
@@ -450,160 +519,94 @@
             this.label17.TabIndex = 12;
             this.label17.Text = "overview";
             // 
-            // popularity_textbox
+            // original_title_textbox
             // 
-            this.popularity_textbox.Location = new System.Drawing.Point(305, 18);
-            this.popularity_textbox.Name = "popularity_textbox";
-            this.popularity_textbox.Size = new System.Drawing.Size(100, 20);
-            this.popularity_textbox.TabIndex = 15;
+            this.original_title_textbox.Location = new System.Drawing.Point(98, 148);
+            this.original_title_textbox.Name = "original_title_textbox";
+            this.original_title_textbox.Size = new System.Drawing.Size(100, 20);
+            this.original_title_textbox.TabIndex = 11;
             // 
-            // label18
+            // label16
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(229, 21);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(52, 13);
-            this.label18.TabIndex = 14;
-            this.label18.Text = "popularity";
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(10, 151);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(62, 13);
+            this.label16.TabIndex = 10;
+            this.label16.Text = "original_title";
             // 
-            // posterpath_textbox
+            // imdb_id_textbox
             // 
-            this.posterpath_textbox.Location = new System.Drawing.Point(98, 174);
-            this.posterpath_textbox.Name = "posterpath_textbox";
-            this.posterpath_textbox.Size = new System.Drawing.Size(100, 20);
-            this.posterpath_textbox.TabIndex = 17;
+            this.imdb_id_textbox.Location = new System.Drawing.Point(98, 122);
+            this.imdb_id_textbox.Name = "imdb_id_textbox";
+            this.imdb_id_textbox.Size = new System.Drawing.Size(100, 20);
+            this.imdb_id_textbox.TabIndex = 9;
             // 
-            // label19
+            // label15
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(10, 177);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(63, 13);
-            this.label19.TabIndex = 16;
-            this.label19.Text = "poster_path";
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(10, 125);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(43, 13);
+            this.label15.TabIndex = 8;
+            this.label15.Text = "imdb_id";
             // 
-            // release_date_textbox
+            // homepage_textbox
             // 
-            this.release_date_textbox.Location = new System.Drawing.Point(98, 98);
-            this.release_date_textbox.Name = "release_date_textbox";
-            this.release_date_textbox.Size = new System.Drawing.Size(100, 20);
-            this.release_date_textbox.TabIndex = 19;
+            this.homepage_textbox.Location = new System.Drawing.Point(98, 73);
+            this.homepage_textbox.Name = "homepage_textbox";
+            this.homepage_textbox.Size = new System.Drawing.Size(307, 20);
+            this.homepage_textbox.TabIndex = 7;
             // 
-            // label20
+            // label14
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(10, 101);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(68, 13);
-            this.label20.TabIndex = 18;
-            this.label20.Text = "release_date";
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(10, 76);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(57, 13);
+            this.label14.TabIndex = 6;
+            this.label14.Text = "homepage";
             // 
-            // revenue_textbox
+            // budget_textbox
             // 
-            this.revenue_textbox.Location = new System.Drawing.Point(305, 99);
-            this.revenue_textbox.Name = "revenue_textbox";
-            this.revenue_textbox.Size = new System.Drawing.Size(100, 20);
-            this.revenue_textbox.TabIndex = 21;
+            this.budget_textbox.Location = new System.Drawing.Point(499, 69);
+            this.budget_textbox.Name = "budget_textbox";
+            this.budget_textbox.Size = new System.Drawing.Size(100, 20);
+            this.budget_textbox.TabIndex = 5;
             // 
-            // label21
+            // label13
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(229, 102);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(46, 13);
-            this.label21.TabIndex = 20;
-            this.label21.Text = "revenue";
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(424, 73);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(40, 13);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "budget";
             // 
-            // status_textbox
+            // backdrop_path_textbox
             // 
-            this.status_textbox.Location = new System.Drawing.Point(305, 125);
-            this.status_textbox.Name = "status_textbox";
-            this.status_textbox.Size = new System.Drawing.Size(100, 20);
-            this.status_textbox.TabIndex = 23;
+            this.backdrop_path_textbox.Location = new System.Drawing.Point(98, 44);
+            this.backdrop_path_textbox.Name = "backdrop_path_textbox";
+            this.backdrop_path_textbox.Size = new System.Drawing.Size(307, 20);
+            this.backdrop_path_textbox.TabIndex = 3;
             // 
-            // label22
+            // label12
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(229, 128);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(35, 13);
-            this.label22.TabIndex = 22;
-            this.label22.Text = "status";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(10, 47);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(79, 13);
+            this.label12.TabIndex = 2;
+            this.label12.Text = "backdrop_path";
             // 
-            // tagline_textbox
+            // label11
             // 
-            this.tagline_textbox.Location = new System.Drawing.Point(305, 148);
-            this.tagline_textbox.Name = "tagline_textbox";
-            this.tagline_textbox.Size = new System.Drawing.Size(100, 20);
-            this.tagline_textbox.TabIndex = 25;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(229, 151);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(38, 13);
-            this.label23.TabIndex = 24;
-            this.label23.Text = "tagline";
-            // 
-            // title_textbox
-            // 
-            this.title_textbox.Location = new System.Drawing.Point(305, 174);
-            this.title_textbox.Name = "title_textbox";
-            this.title_textbox.Size = new System.Drawing.Size(100, 20);
-            this.title_textbox.TabIndex = 27;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(229, 177);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(23, 13);
-            this.label24.TabIndex = 26;
-            this.label24.Text = "title";
-            // 
-            // vote_average_textbox
-            // 
-            this.vote_average_textbox.Location = new System.Drawing.Point(500, 15);
-            this.vote_average_textbox.Name = "vote_average_textbox";
-            this.vote_average_textbox.Size = new System.Drawing.Size(100, 20);
-            this.vote_average_textbox.TabIndex = 29;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(424, 18);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(73, 13);
-            this.label25.TabIndex = 28;
-            this.label25.Text = "vote_average";
-            // 
-            // vote_count_textbox
-            // 
-            this.vote_count_textbox.Location = new System.Drawing.Point(500, 41);
-            this.vote_count_textbox.Name = "vote_count_textbox";
-            this.vote_count_textbox.Size = new System.Drawing.Size(100, 20);
-            this.vote_count_textbox.TabIndex = 31;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(424, 44);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(61, 13);
-            this.label26.TabIndex = 30;
-            this.label26.Text = "vote_count";
-            // 
-            // adult_comboBox1
-            // 
-            this.adult_comboBox1.FormattingEnabled = true;
-            this.adult_comboBox1.Items.AddRange(new object[] {
-            "true",
-            "false"});
-            this.adult_comboBox1.Location = new System.Drawing.Point(98, 17);
-            this.adult_comboBox1.Name = "adult_comboBox1";
-            this.adult_comboBox1.Size = new System.Drawing.Size(100, 21);
-            this.adult_comboBox1.TabIndex = 32;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(10, 21);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(30, 13);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "adult";
             // 
             // Edit
             // 

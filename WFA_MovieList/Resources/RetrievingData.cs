@@ -18,7 +18,7 @@ namespace WFA_MovieList.Resources
             return Image.FromStream(response);
         }
 
-        public async Task<Button> CreatingMovieButtons(Data item)
+        public async Task<Button> CreatingMovieButtons(MovieData item)
         {
             Button bttn = new Button()
             {

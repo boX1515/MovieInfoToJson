@@ -9,9 +9,111 @@ namespace WFA_MovieList
 {
     public class JSON
     {
-        public List<Data> data { get; set; }
+        public List<MovieData> data { get; set; }
+
+        public Data convertFromMovieData (MovieData item,int id)
+        {
+            Data convItem = new Data()
+            {
+                ID = id,
+                Name = item.Name,
+                FileName = item.FileName,
+                ServerLocation_ = item.ServerLocation,
+                DBid = Convert.ToString(item.DBid),
+                DBTitle = item.DBTitle,
+                DBposter = item.DBposter
+            };
+            string genres = "";
+            for(int i = 0; i < item.DBgenres.Count;i++)
+            {
+                if(i == item.DBgenres.Count - 1)
+                {
+                    genres += item.DBgenres[i];
+                }
+                else
+                {
+                    genres += item.DBgenres[i] + ";";
+                }
+            }
+            convItem.DBgenres = genres;
+            if (item.Info != null) { convItem.Info = convertFromMovieInfo(item.Info, convItem.ID); } else { convItem.Info = new Info(); }
+            return convItem;
+        }
+
+        public Info convertFromMovieInfo(MovieInfo item, int id)
+        {
+            Info convItem = new Info()
+            {
+                ID = id,
+                adult = item.adult,
+                backdrop_path = item.backdrop_path,
+                budget = Convert.ToString(item.budget),
+                homepage = item.homepage,
+                imdb_id = item.imdb_id,
+                original_title = item.original_title,
+                overview = item.overview,
+                popularity = item.popularity,
+                poster_path = item.poster_path,
+                release_date = item.release_date,
+                revenue = Convert.ToString(item.revenue),
+                runtime = Convert.ToString(item.runtime),
+                status = item.status,
+                tagline = item.tagline,
+                title = item.title,
+                vote_average = Convert.ToString(item.vote_average),
+                vote_count = Convert.ToString(item.vote_count)
+            };
+            return convItem;
+        }
+
+        public MovieData ConvertingDataToMovieData(Data item)
+        {
+            MovieData data = new MovieData()
+            {
+                ID = item.ID,
+                Name = item.Name,
+                FileName = item.FileName,
+                ServerLocation = item.ServerLocation_,
+                DBid = Convert.ToInt32(item.DBid),
+                DBTitle = item.DBTitle,
+                DBposter = item.DBposter,
+                DBgenres = new List<int>(),
+            };
+
+            var genres = item.DBgenres.Split(';').ToList();
+            foreach (var g in genres) { data.DBgenres.Add(Convert.ToInt32(g)); }
+            data.Info = ConvertingInfoToMovieInfo(item.Info);
+            return data;
+        }
+
+        public MovieInfo ConvertingInfoToMovieInfo(Info item)
+        {
+             MovieInfo mi = new MovieInfo()
+            {
+                backdrop_path = item.backdrop_path,
+                budget = Convert.ToInt32(item.budget),
+                homepage = item.homepage,
+                imdb_id = item.imdb_id,
+                original_title = item.original_title,
+                overview = item.overview,
+                popularity = item.popularity,
+                poster_path = item.poster_path,
+                release_date = item.release_date,
+                revenue = Convert.ToInt32(item.revenue),
+                runtime = Convert.ToInt32(item.runtime),
+                status = item.status,
+                tagline = item.tagline,
+                title = item.title,
+                vote_average = Convert.ToDouble(item.vote_average),
+                vote_count = Convert.ToInt32(item.vote_count)
+            };
+            bool value;
+            Boolean.TryParse(item.adult.ToString(), out value);
+            mi.adult = value;
+            return mi;
+        }
     }
-    public class Data
+    public class MovieData
     {
         public int ID { get; set; }
         public string Name { get; set; }

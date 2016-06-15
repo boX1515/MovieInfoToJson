@@ -11,6 +11,7 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using WFA_MovieList.Resources;
+using WFA_MovieList.Database;
 
 
 namespace WFA_MovieList
@@ -24,13 +25,19 @@ namespace WFA_MovieList
         public static List<string> LocationList;
         public static Dictionary<string,List<string>> Files;
         public static Dictionary<string,string> LocationDictionary;
-        public static List<string> Data = new List<string>();
+        public List<string> Data;
+
+        private JSON dataManipulation = new JSON();
         public API APICall = new API();
+
         public string Title = "MovieDataToJson";
-        public string APICallTitle = "Processing ...";
+        public string APICallTitle = "Processing ... ";
+
+        private Database.Database db = new Database.Database();
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            var data = db.getDataFromDB();
             textBox2.Text = Properties.Settings.Default.APIKey;
             if (LocationList == null)
             {
@@ -70,53 +77,68 @@ namespace WFA_MovieList
         {
             var list = new List<string>();
             var movieList = new List<string>();
-            foreach (string key in LocationDictionary.Keys)
+            Data = new List<string>();
+            int dirCount = 0;
+            if(LocationDictionary != null)
             {
-                var dir = LocationDictionary[key];
-
-                list = Directory.GetDirectories(dir).ToList();
-                foreach (var item in list)
+                foreach (string key in LocationDictionary.Keys)
                 {
-                    foreach (var dirFiles in Directory.GetFiles(item))
+                    var dir = LocationDictionary[key];
+
+                    list = Directory.GetDirectories(dir).ToList();
+                    foreach (var item in list)
                     {
-                        if (dirFiles.EndsWith(".mp4"))
+                        foreach (var dirFiles in Directory.GetFiles(item))
                         {
-                            movieList.Add(item);
+                            if (dirFiles.EndsWith(".mp4"))
+                            {
+                                movieList.Add(item);
+                            }
                         }
+
                     }
-
-                }
-                if (Files.ContainsKey(dir))
-                {
-                    Files.Remove(dir);
-                }
-                Files.Add(dir, movieList);
-
-            }
-
-            foreach (var key in Files.Keys)
-            {
-                var data_dir = Files[key].ToArray();
-                for (int i = 0; i < data_dir.Length; i++)
-                {
-                    if (!Data.Contains(data_dir[i]))
+                    if(Files != null)
                     {
-                        Data.Add(data_dir[i]);
+                        if (Files.ContainsKey(dir))
+                        {
+                            Files.Remove(dir);
+                        }
+                        Files.Add(dirCount.ToString(), movieList);
+                        dirCount++;
                     }
+                    
 
                 }
             }
-            if(listBox1.DataSource != null)
-            {
-                listBox1.DisplayMember = "main_folder";
-            }
-            listBox1.DataSource = Data;
-            listBox1.Update();
-            
-            progressBar1.Maximum = Data.Count;
-            label5.Text = Data.Count.ToString();
-        }
 
+            if(Files != null)
+            {
+                foreach (var key in Files.Keys)
+                {
+                    var data_dir = Files[key].ToArray();
+                    for (int i = 0; i < data_dir.Length; i++)
+                    {
+                        if (!Data.Contains(data_dir[i]))
+                        {
+                            Data.Add(data_dir[i]);
+                        }
+
+                    }
+                }
+            }
+
+            if(Data != null)
+            {
+                if (listBox1.DataSource != null) { listBox1.DataSource = null; listBox1.DataSource = Data; }
+                else { listBox1.DataSource = Data; }
+                listBox1.Update();
+
+                progressBar1.Maximum = Data.Count;
+                label5.Text = Data.Count.ToString();
+            }
+            
+        }
+        
         private void updateFoldersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             updateMainFolders();
@@ -127,7 +149,7 @@ namespace WFA_MovieList
         private void button_movie_Click(object sender, EventArgs e)
         {
             var item = ((Button)sender).Tag;
-            Data newItem = new WFA_MovieList.Data();
+            MovieData newItem = new MovieData();
             newItem = GlobalVar.GlobalJsonObject.data.Where(x => x.DBid.ToString() == item.ToString()).First();
             Edit formLoad = new Edit();
             formLoad.item = newItem;
@@ -141,55 +163,70 @@ namespace WFA_MovieList
             }
 
         }
-
+       
         private async void button1_Click(object sender, EventArgs e)
         {
             progressBar1.Value = 0;
-
-             var objectToSerialize = new JSON();
-            objectToSerialize.data = new List<WFA_MovieList.Data>();
+            
+            var objectToSerialize = new JSON();
+            objectToSerialize.data = new List<MovieData>();
             bool isItemInImportedJson = false;
             GlobalVar.GlobalApiCall = new Count();
             for (int i = 0; i < Data.Count;i++)
             {
                 progressBar1.Value = progressBar1.Value + 1;
-                
-                Data item = new WFA_MovieList.Data();
-                item.Name = new DirectoryInfo(Data[i]).Name;
 
-                //PREGLEJ DA BO HITREJŠE!!
-                if (GlobalVar.GlobalJsonObject != null)
+                flowLayoutPanel1.Enabled = false;
+
+                MovieData item = new MovieData();
+                item.Name = new DirectoryInfo(Data[i]).Name;
+                label2.Text = "Checking Movie Info in Database ... ";
+                var status = db.DatabaseCheckName(item.Name);
+                if(status.Item1 != "Item is in database!") // preverba v bazi
                 {
-                    isItemInImportedJson = true;
-                    var isInGlobal = GlobalVar.GlobalJsonObject.data.Where<Data>(x => x.Name == item.Name).FirstOrDefault();
-                    if(isInGlobal == null)
+                    
+                    //PREGLEJ DA BO HITREJŠE!!
+                    if (GlobalVar.GlobalJsonObject != null)
                     {
-                        
-                        item.ID = GlobalVar.GlobalJsonObject.data.Count + 1;
-                        item = await RetrievingMovieData(item,i);
+                        isItemInImportedJson = true;
+                        var isInGlobal = GlobalVar.GlobalJsonObject.data.Where<MovieData>(x => x.Name == item.Name).FirstOrDefault();
+                        if (isInGlobal == null)
+                        {
+
+                            item.ID = GlobalVar.GlobalJsonObject.data.Count + 1;
+                            item = await RetrievingMovieData(item, i);
+                            objectToSerialize.data.Add(item);
+                            GlobalVar.GlobalJsonObject.data.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        label2.Text = "Movie is not in Database, retrieving from API ... ";
+                        item.ID = i;
+                        item = await RetrievingMovieData(item, i);
                         objectToSerialize.data.Add(item);
-                        GlobalVar.GlobalJsonObject.data.Add(item);
+
                     }
                 }
                 else
                 {
-                    item.ID = i;
-                    item = await RetrievingMovieData(item,i);
+                    item = dataManipulation.ConvertingDataToMovieData(status.Item2);
                     objectToSerialize.data.Add(item);
-                    
+                    //creating buttons in flow layout panel for easy view
+                    ImageDownload imageProcessing = new ImageDownload();
+                    var responseBttn = await imageProcessing.CreatingMovieButtons(item);
+                    responseBttn.Click += new EventHandler(button_movie_Click);
+                    flowLayoutPanel1.Controls.Add(responseBttn);
                 }
 
-                //creating buttons in flow layout panel for easy view
-                ImageDownload imageProcessing = new ImageDownload();
-                var responseBttn = await imageProcessing.CreatingMovieButtons(item);
-                responseBttn.Click += new EventHandler(button_movie_Click);
-                flowLayoutPanel1.Controls.Add(responseBttn);
+                
 
+                //check in local database to see if movie is already in
             }
             if (isItemInImportedJson) 
             {
                 //Sorting objects inside list to display items with descending date
-                GlobalVar.GlobalJsonObject.data.Sort(delegate (Data x, Data y)
+                GlobalVar.GlobalJsonObject.data.Sort(delegate (MovieData x, MovieData y)
                 {
                     DateTime item1 = Convert.ToDateTime(x.Info.release_date);
                     DateTime item2 = Convert.ToDateTime(y.Info.release_date);
@@ -205,7 +242,7 @@ namespace WFA_MovieList
             else
             {
                 //Sorting objects inside list to display items with descending date
-                objectToSerialize.data.Sort(delegate (Data x, Data y)
+                objectToSerialize.data.Sort(delegate (MovieData x, MovieData y)
                 {
                     DateTime item1 = Convert.ToDateTime(x.Info.release_date);
                     DateTime item2 = Convert.ToDateTime(y.Info.release_date);
@@ -216,14 +253,20 @@ namespace WFA_MovieList
                 });
                 //Serializing && setting global variable for JSON object as list
                 GlobalVar.GlobalJsonObject = objectToSerialize;
-                var json = JsonConvert.SerializeObject(objectToSerialize, Formatting.Indented);
-                textBox1.Text = json;
+                //var json = JsonConvert.SerializeObject(objectToSerialize, Formatting.Indented);
+                //textBox1.Text = json;
             }
+            label2.Text = "Checking database for changes...";
+            
+            db.DatabaseDataCheck(GlobalVar.GlobalJsonObject);
             label2.Text = "Completed";
             this.Text = Title;
+            flowLayoutPanel1.Enabled = true;
         }
         
-        private async Task<Data> RetrievingMovieData(Data item,int i)
+        
+
+        private async Task<MovieData> RetrievingMovieData(MovieData item,int i)
         {
             
             foreach (var key in Directory.GetFiles(Data[i]))
@@ -275,19 +318,22 @@ namespace WFA_MovieList
             }
             return item;
         }
+
         private void jSONExportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(textBox1.Text != "")
+            if(GlobalVar.GlobalJsonObject !=  null)
             {
+                var json = JsonConvert.SerializeObject(GlobalVar.GlobalJsonObject, Formatting.Indented);
                 folderBrowserDialog1.ShowNewFolderButton = true;
                 DialogResult result = folderBrowserDialog1.ShowDialog();
                 if(result == DialogResult.OK)
                 {
-                    File.WriteAllText(folderBrowserDialog1.SelectedPath + "\\data.json", textBox1.Text);
+                    File.WriteAllText(folderBrowserDialog1.SelectedPath + "\\data.json", json);
                     MessageBox.Show("File creation completed!");
                 }
             }
         }
+
         private void textBox1_DoubleClick(object sender, EventArgs e)
         {
             Process.Start(textBox1.Text);
@@ -360,18 +406,38 @@ namespace WFA_MovieList
                 {
                     //Error at listbox deleting a selected item
                     var list = listBox2.Items;
-                    for (int i = 0; i < list.Count; i++)
+                    List<string> items = new List<string>();
+                    Dictionary<string, string> zac = new Dictionary<string, string>();
+                    for (int i = 0; i < listBox2.Items.Count; i++)
                     {
-                        if (listBox2.SelectedItem == list[i])
+                        if (listBox2.SelectedItem != listBox2.Items[i])
                         {
-                            list.RemoveAt(i);
+                            items.Add(listBox2.Items[i].ToString());
+                            zac.Add(i.ToString(), listBox2.Items[i].ToString());
                         }
                     }
-                    listBox2.Dispose();
-                    for(int i = 0; i < list.Count;i++)
+                    if(items != null)
+                    {
+                        listBox2.DataSource = null;
+                        listBox2.DataSource = items;
+                        LocationDictionary.Clear();
+                        LocationDictionary = zac;
+                        if(LocationDictionary.Keys.Count != 0)
+                        {
+                            Files = new Dictionary<string, List<string>>(); //shranjevanje lokacij vseh map
+                            updateMainFolders();
+                        }
+                        else
+                        {
+                            ClearAllData();
+                        }
+                        
+                    }
+                    
+                    /*for(int i = 0; i < list.Count;i++)
                     {
                         listBox2.Items.Insert(i, list[i]);
-                    }
+                    }*/
                     
                 }
                 catch(Exception ex)
@@ -380,6 +446,15 @@ namespace WFA_MovieList
                 }
                 
             }
+        }
+
+        private void ClearAllData()
+        {
+            LocationDictionary = null;
+            Data = null;
+            Files = null;
+            listBox1.DataSource = null;
+            listBox2.DataSource = null;
         }
 
         private void refresh_button_Click(object sender, EventArgs e)
@@ -398,5 +473,6 @@ namespace WFA_MovieList
             ToolTip ToolTip1 = new ToolTip();
             ToolTip1.SetToolTip(button3, "Remove selected main folder from list.");
         }
+
     }
 }

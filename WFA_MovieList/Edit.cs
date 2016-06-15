@@ -13,7 +13,7 @@ namespace WFA_MovieList
 {
     public partial class Edit : Form
     {
-        public Data item = new Data();
+        public MovieData item = new MovieData();
         public Edit()
         {
             InitializeComponent();
@@ -68,5 +68,6 @@ namespace WFA_MovieList
             System.Diagnostics.Process.Start(((LinkLabel)sender).Text);
             
         }
+
     }
 }
